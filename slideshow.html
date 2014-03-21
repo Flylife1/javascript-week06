@@ -8,10 +8,16 @@
         <img id="image" src="images/1.jpg" alt="">
         <script src="jquery-1.11.0.js"></script>
         <script>
-       $('#image').click(function() {
-    this.src = 'images/2.jpg';
+      var num = 1;
+      var num = 5;
+$('#image').click(function() {
+    num++;
+    if (num > max) { 
+        num = 1;
+    }; 
+    var image = 'images/' + num + '.jpg';
+    this.src = image;
 });
-        
         </script>
     </body>
 </html>
