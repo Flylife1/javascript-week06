@@ -8,20 +8,30 @@
         <img id="image" src="images/1.jpg" alt="">
         <script src="jquery-1.11.0.js"></script>
         <script>
+
+        var images = [
+            'images/1.jpg',
+            'images/2.jpg',
+            'images/3.jpg',
+            'images/4.jpg',
+            'images/5.jpg',
+            'images/6.jpg',
+            'images/7.jpg'
+        ]
           
-        var num = 1;
-        var max = 7;
+        var num = 0;
+        var max = images.length -1;
     
         $('#image').click(function() {
             num++;
             if (num > max) { 
                 num = 1;
             }; 
-            var image = 'images/' + num + '.jpg';
+            var image = image [num];
             this.src = image;
         });
 
-        
+
 
 
             </script>
