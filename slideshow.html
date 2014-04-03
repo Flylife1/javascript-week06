@@ -55,24 +55,33 @@
                 src: 'images/7.jpg',
                 width: 580,
                 height: 766
-            }
+            },
          ];
           
         var num = 0;
         var max = images.length -1;
         
-        resizeImage();
-        $('#image').click(function() {
-            num++;
-            if (num > max) { 
-                num = 0;
-            }; 
-            var image = images [num];
+        function nextOne(){
+            var image = images[num];
             this.src = image.src;
-        resizeImage();
+            resizeImage();
+
+        /*Beginning of count*/
+        $('#image').fadeOut(600, function(){
+            num++;
+            if (num > max){ 
+                num = 0;
+            }
+
+        $('#image').attr('src', 'images/' + (num + 1) + '.jpg');
+        $('#image').fadeIn(600);
         });
+}
+        /*End of count*/
 
         $(window).resize(resizeImage);
+
+        $('#image').click(nextOne);
 
         function resizeImage() {
             var image= images [num];
