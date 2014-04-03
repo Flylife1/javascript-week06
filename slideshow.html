@@ -3,6 +3,11 @@
     <head>
         <meta charset="utf-8">
         <title>Slideshow</title>
+        <style>
+        body {
+            margin: 0;
+    }
+    </style>
     </head>
     <body>
         <img id="image" src="images/1.jpg" alt="">
@@ -10,14 +15,48 @@
         <script>
 
         var images = [
-            'images/1.jpg',
-            'images/2.jpg',
-            'images/3.jpg',
-            'images/4.jpg',
-            'images/5.jpg',
-            'images/6.jpg',
-            'images/7.jpg'
-        ]
+             {
+                src: 'images/1.jpg',
+                width: 556,
+                height: 702
+            }, 
+
+            {
+                src: 'images/2.jpg',
+                width: 584,
+                height: 768
+            }, 
+            
+            {
+                src: 'images/3.jpg',
+                width: 584,
+                height: 767
+            }, 
+            
+            {
+                src: 'images/4.jpg',
+                width: 580,
+                height: 766
+            },
+
+            {
+                src: 'images/4.jpg',
+                width: 580,
+                height: 766
+            },
+
+            {
+                src: 'images/4.jpg',
+                width: 580,
+                height: 766
+            },
+
+            {
+                src: 'images/4.jpg',
+                width: 580,
+                height: 766
+            }
+         ];
           
         var num = 0;
         var max = images.length -1;
@@ -25,11 +64,20 @@
         $('#image').click(function() {
             num++;
             if (num > max) { 
-                num = 1;
+                num = 0;
             }; 
             var image = images [num];
-            this.src = image;
+            this.src = image.src;
         });
+
+        function resizeImage() {
+            var image= images [num];
+            var ratio= image.width / image.height;
+            var width= $(window).width();
+            var height= width / ratio;
+            $('#image').css('width', width);
+            $('#image').css('height', height);
+        }
 
 
 
