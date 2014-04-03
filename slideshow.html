@@ -69,7 +69,10 @@
             }; 
             var image = images [num];
             this.src = image.src;
+        resizeImage();
         });
+
+        $(window).resize(resizeImage);
 
         function resizeImage() {
             var image= images [num];
