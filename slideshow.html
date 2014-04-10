@@ -18,7 +18,7 @@
          var flickr = new Flickr('8e293eb5bc01282cc363187cfb4c954a');
 
          flickr.photos.search({
-            text: "graffiti -video", 
+            text: "graffiti", 
             lat: "40.416775", 
             lon: "-3.703790",
             extras: "o_dims"
@@ -28,7 +28,7 @@
            var num = 0;
            var max = images.length -1;
            console.log(images[num]);
-           $('#photo').html('<img src="' + images[num].src('b') + '">');
+           $('#photo').html('<img src="' + images[num].src() + '">');
             
             function nextOne(){
                 var image = images[num];
@@ -43,7 +43,7 @@
                     num = 0;
                 }
 
-            $('#photo').html('<img src="' + images[num].src('b') + '">');
+            $('#photo').html('<img src="' + images[num].src() + '">');
             resizeImage();
             $('#photo').fadeIn(600);
             });
