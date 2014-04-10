@@ -18,7 +18,7 @@
          var flickr = new Flickr('8e293eb5bc01282cc363187cfb4c954a');
 
          flickr.photos.search({
-            text: "graffiti", 
+            text: "graffiti -video", 
             lat: "40.416775", 
             lon: "-3.703790",
             extras: "o_dims"
@@ -44,6 +44,7 @@
                 }
 
             $('#photo').html('<img src="' + images[num].src('b') + '">');
+            resizeImage();
             $('#photo').fadeIn(600);
             });
     }
