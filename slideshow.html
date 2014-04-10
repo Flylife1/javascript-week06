@@ -10,87 +10,63 @@
     </style>
     </head>
     <body>
-        <img id="image" src="images/1.jpg" alt="">
+        <div id="photo"></div>
         <script src="jquery-1.11.0.js"></script>
-        <script>
+         <script src="flickr.js"></script>
+         <script>
 
-        var images = [
-             {
-                src: 'images/1.jpg',
-                width: 556,
-                height: 702
-            }, 
+         var flickr = new Flickr('8e293eb5bc01282cc363187cfb4c954a');
 
-            {
-                src: 'images/2.jpg',
-                width: 584,
-                height: 768
-            }, 
+         flickr.photos.search({
+            text: "graffiti", 
+            lat: "40.416775", 
+            lon: "-3.703790",
+            extras: "o_dims"
             
-            {
-                src: 'images/3.jpg',
-                width: 584,
-                height: 767
-            }, 
+         },  function(rx) {
+           var images = rx.photos.photo;
+           var num = 0;
+           var max = images.length -1;
+           console.log(images[num]);
+           $('#photo').html('<img src="' + images[num].src('b') + '">');
             
-            {
-                src: 'images/4.jpg',
-                width: 580,
-                height: 766
-            },
+            function nextOne(){
+                var image = images[num];
+                this.src = image.src;
+                resizeImage();
 
-            {
-                src: 'images/5.jpg',
-                width: 580,
-                height: 766
-            },
 
-            {
-                src: 'images/6.jpg',
-                width: 580,
-                height: 766
-            },
+            /*Beginning of count*/
+            $('#photo').fadeOut(600, function(){
+                num++;
+                if (num > max){ 
+                    num = 0;
+                }
 
-            {
-                src: 'images/7.jpg',
-                width: 580,
-                height: 766
-            },
-         ];
-          
-        var num = 0;
-        var max = images.length -1;
-        
-        function nextOne(){
-            var image = images[num];
-            this.src = image.src;
-            resizeImage();
+            $('#photo').html('<img src="' + images[num].src('b') + '">');
+            $('#photo').fadeIn(600);
+            });
+    }
+            /*End of count*/
 
-        /*Beginning of count*/
-        $('#image').fadeOut(600, function(){
-            num++;
-            if (num > max){ 
-                num = 0;
+            $(window).resize(resizeImage);
+
+            $('#photo').click(nextOne);
+
+            function resizeImage() {
+                var image= images [num];
+                var ratio= image.o_width / image.o_height;
+                var width= $(window).width();
+                var height= width / ratio;
+                $('#photo img').css('width', width);
+                $('#photo img').css('height', height);
             }
+         })
+       
 
-        $('#image').attr('src', 'images/' + (num + 1) + '.jpg');
-        $('#image').fadeIn(600);
-        });
-}
-        /*End of count*/
-
-        $(window).resize(resizeImage);
-
-        $('#image').click(nextOne);
-
-        function resizeImage() {
-            var image= images [num];
-            var ratio= image.width / image.height;
-            var width= $(window).width();
-            var height= width / ratio;
-            $('#image').css('width', width);
-            $('#image').css('height', height);
-        }
+        
+          
+        
 
 
 
